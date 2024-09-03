@@ -51,7 +51,7 @@ end
 
 -- Main function to copy files from GitHub to the disk
 function main()
-    local githubRepoUrl = "https://raw.githubusercontent.com/SomethingBasic01/Dynet" -- Replace with your GitHub repository URL
+    local githubRepoUrl = "https://raw.githubusercontent.com/SomethingBasic01/Dynet" -- GitHub repository URL
     local diskPath = "disk" -- Path to the mounted disk drive in ComputerCraft
 
     if not fs.exists(diskPath) then
