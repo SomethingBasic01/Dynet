@@ -20,9 +20,25 @@ function downloadFromGitHubToDisk(githubRepoUrl, destinationPath)
 
     -- List all files and their corresponding raw URLs
     local filesToDownload = {
-        {"COPY CONTENTS TO DISK - Copy/es", baseURL .. "/es"},
-        {"COPY CONTENTS TO DISK - Copy/startup", baseURL .. "/startup"},
-        {"COPY CONTENTS TO DISK - Copy/client/web", baseURL .. "/client/web"},
+        {"es", baseURL .. "/es"},
+        {"startup", baseURL .. "/startup"},
+        {"client/web", baseURL .. "/client/web"},
+        {"dns/serverlist", baseURL .. "/dns/serverlist"},
+        {"dns/startup", baseURL .. "/dns/startup"},
+        {"server/core", baseURL .. "/server/core"},
+        {"server/filestart", baseURL .. "/server/filestart"},
+        {"server/server", baseURL .. "/server/server"},
+        {"server/settings", baseURL .. "/server/settings"},
+        {"server/startup", baseURL .. "/server/startup"},
+        {"tempBlank/site/dynamic", baseURL .. "/tempBlank/site/dynamic"},
+        {"tempBlank/site/home", baseURL .. "/tempBlank/site/home"},
+        {"tempMusic/site/dynamic", baseURL .. "/tempMusic/site/dynamic"},
+        {"tempMusic/site/home", baseURL .. "/tempMusic/site/home"},
+        {"tempMusic/site/music", baseURL .. "/tempMusic/site/music"},
+        {"tempMusic/site/redstone", baseURL .. "/tempMusic/site/redstone"},
+        {"tempStore/site/dynamic", baseURL .. "/tempStore/site/dynamic"},
+        {"tempStore/site/home", baseURL .. "/tempStore/site/home"},
+        {"tempStore/site/store", baseURL .. "/tempStore/site/store"},
         -- Add more files here as needed
     }
 
@@ -35,7 +51,7 @@ end
 
 -- Main function to copy files from GitHub to the disk
 function main()
-    local githubRepoUrl = "https://github.com/SomethingBasic01/Dynet" -- Replace with your GitHub repository URL
+    local githubRepoUrl = "https://raw.githubusercontent.com/SomethingBasic01/Dynet" -- Replace with your GitHub repository URL
     local diskPath = "disk" -- Path to the mounted disk drive in ComputerCraft
 
     if not fs.exists(diskPath) then
