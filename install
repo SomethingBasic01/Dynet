@@ -1,0 +1,51 @@
+-- Function to download a file from a URL
+function downloadFile(url, destination)
+    local response = http.get(url)
+    if response then
+        local content = response.readAll()
+        response.close()
+
+        local file = fs.open(destination, "w")
+        file.write(content)
+        file.close()
+        print("Downloaded: " .. destination)
+    else
+        print("Failed to download: " .. url)
+    end
+end
+
+-- Function to download all files from GitHub to the disk
+function downloadFromGitHubToDisk(githubRepoUrl, destinationPath)
+    local baseURL = githubRepoUrl .. "/main" -- GitHub raw URL for the main branch
+
+    -- List all files and their corresponding raw URLs
+    local filesToDownload = {
+        {"COPY CONTENTS TO DISK - Copy/es", baseURL .. "/es"},
+        {"COPY CONTENTS TO DISK - Copy/startup", baseURL .. "/startup"},
+        {"COPY CONTENTS TO DISK - Copy/client/web", baseURL .. "/client/web"},
+        -- Add more files here as needed
+    }
+
+    -- Download each file to the disk
+    for _, fileData in ipairs(filesToDownload) do
+        local destination = fs.combine(destinationPath, fileData[1])
+        downloadFile(fileData[2], destination)
+    end
+end
+
+-- Main function to copy files from GitHub to the disk
+function main()
+    local githubRepoUrl = "https://github.com/SomethingBasic01/Dynet" -- Replace with your GitHub repository URL
+    local diskPath = "disk" -- Path to the mounted disk drive in ComputerCraft
+
+    if not fs.exists(diskPath) then
+        print("Disk not found. Please insert a disk and try again.")
+        return
+    end
+
+    downloadFromGitHubToDisk(githubRepoUrl, diskPath)
+    print("All files have been downloaded from GitHub to the disk.")
+end
+
+-- Run the main function
+main()
